@@ -12,6 +12,11 @@ const links: Route[] = [
     title: "Wallet Options",
     name: "walletOptions",
   },
+  {
+    path: "/dashboard/settings/ipfs-gateways",
+    title: "IPFS Gateways",
+    name: "ipfsGateways",
+  },
 ];
 
 export const SettingsSidebar: React.FC<SettingsSidebarProps> = ({

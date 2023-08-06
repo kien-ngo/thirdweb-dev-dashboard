@@ -111,7 +111,10 @@ export enum PageId {
 
   // thirdweb.com/settings/wallet-options
   SettingsWalletOptions = "settings-wallet-options",
-  
+
+  // thirdweb.com/settings/ipfs-gateways
+  SettingsIpfsGateways = "settings-ipfs-gateways",
+
   // ---------------------------------------------------------------------------
   //  solutions pages
   // ---------------------------------------------------------------------------

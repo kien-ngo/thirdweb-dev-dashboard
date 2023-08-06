@@ -11,6 +11,7 @@ import { GLOBAL_AUTH_TOKEN_KEY } from "constants/app";
 import { DASHBOARD_THIRDWEB_CLIENT_ID } from "constants/rpc";
 import { useEvmWallets } from "contexts/evm-wallets";
 import { useSupportedChains } from "hooks/chains/configureChains";
+import { useCustomIpfsGateways } from "hooks/useCustomIpfsGateways";
 import { useNativeColorMode } from "hooks/useNativeColorMode";
 import { getDashboardChainRpc } from "lib/rpc";
 import { StorageSingleton } from "lib/sdk";
@@ -30,6 +31,10 @@ export const DashboardThirdwebProvider: ComponentWithChildren<
   const contractInfo = useEVMContractInfo();
   const chain = contractInfo?.chain;
   const { supportedWallets } = useEvmWallets();
+  const customIpfsGateways = useCustomIpfsGateways();
+  const gatewayUrls = customIpfsGateways.length
+    ? customIpfsGateways.map((item) => item.url)
+    : undefined;
   const readonlySettings = useMemo(() => {
     if (!chain) {
       return undefined;
@@ -58,6 +63,7 @@ export const DashboardThirdwebProvider: ComponentWithChildren<
       sdkOptions={{
         gasSettings: { maxPriceInGwei: 650 },
         readonlySettings,
+        gatewayUrls,
       }}
       clientId={DASHBOARD_THIRDWEB_CLIENT_ID}
       supportedWallets={supportedWallets}
